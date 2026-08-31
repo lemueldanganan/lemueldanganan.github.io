@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Lemuel Danganan | Pastor-Teacher, Scholar & Public Servant</title>
+
+  <meta
+    name="description"
+    content="The personal website of Lemuel Danganan — pastor-teacher, scholar, educator, researcher, and advocate of responsible public service."
+  />
+
+  <style>
+    :root {
+      --navy: #10253f;
+      --navy-light: #183b61;
+      --gold: #b99146;
+      --cream: #f7f4ed;
+      --white: #ffffff;
+      --text: #20252b;
+      --muted: #68717c;
+      --line: #e4e4e4;
+      --card: #ffffff;
+      --max-width: 1180px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--white);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(92%, var(--max-width));
+      margin: auto;
+    }
+
+    /* ------------------------------
+       HEADER
+    ------------------------------ */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.97);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 750;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--white);
+      font-family: Georgia, serif;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      list-style: none;
+      align-items: center;
+      font-size: 0.93rem;
+    }
+
+    .nav-links a {
+      color: #39414b;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .menu-button {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      color: var(--navy);
+      cursor: pointer;
+    }
+
+    /* ------------------------------
+       HERO
+    ------------------------------ */
+
+    .hero {
+      background:
+        radial-gradient(circle at 80% 30%, rgba(185,145,70,0.16), transparent 28%),
+        linear-gradient(135deg, #f9f7f1, #ffffff);
+      padding: 110px 0 100px;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      font-weight: 750;
+      letter-spacing: 0.16em;
+      font-size: 0.78rem;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--navy);
+      font-size: clamp(3rem, 6vw, 5.4rem);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+      max-width: 850px;
+    }
+
+    .hero-subtitle {
+      margin-top: 26px;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      color: #49535f;
+      max-width: 720px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 22px;
+      border-radius: 6px;
+      font-weight: 650;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--navy);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--navy-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      border: 1px solid #c8ccd1;
+      color: var(--navy);
+      background: white;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+    }
+
+    .portrait-placeholder {
+      width: min(100%, 330px);
+      aspect-ratio: 1 / 1;
+      margin-left: auto;
+      border-radius: 50%;
+      background:
+        linear-gradient(145deg, var(--navy-light), var(--navy));
+      display: grid;
+      place-items: center;
+      color: white;
+      font-family: Georgia, serif;
+      font-size: clamp(4rem, 8vw, 7rem);
+      border: 8px solid white;
+      box-shadow: 0 30px 70px rgba(16, 37, 63, 0.16);
+    }
+
+    /* ------------------------------
+       GENERAL SECTIONS
+    ------------------------------ */
+
+    section {
+      padding: 95px 0;
+    }
+
+    .section-alt {
+      background: var(--cream);
+    }
+
+    .section-heading {
+      max-width: 760px;
+      margin-bottom: 48px;
+    }
+
+    .section-heading h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--navy);
+      font-size: clamp(2.1rem, 4vw, 3.2rem);
+      line-height: 1.1;
+      margin-bottom: 16px;
+      letter-spacing: -0.025em;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 1.07rem;
+    }
+
+    /* ------------------------------
+       ABOUT
+    ------------------------------ */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .about-copy p + p {
+      margin-top: 18px;
+    }
+
+    .principles {
+      display: grid;
+      gap: 14px;
+    }
+
+    .principle {
+      padding: 19px 21px;
+      border-left: 4px solid var(--gold);
+      background: #fafafa;
+    }
+
+    .principle strong {
+      display: block;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    /* ------------------------------
+       CARDS
+    ------------------------------ */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 30px;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(16, 37, 63, 0.08);
+    }
+
+    .card-number {
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      margin-bottom: 14px;
+    }
+
+    .card h3 {
+      color: var(--navy);
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    /* ------------------------------
+       SCHOLARSHIP
+    ------------------------------ */
+
+    .research-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .research-item {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 30px;
+    }
+
+    .research-label {
+      color: var(--gold);
+      font-size: 0.82rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .research-item h3 {
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .research-item p {
+      color: var(--muted);
+    }
+
+    /* ------------------------------
+       PUBLIC LEADERSHIP
+    ------------------------------ */
+
+    .leadership {
+      background: var(--navy);
+      color: white;
+    }
+
+    .leadership .section-heading h2 {
+      color: white;
+    }
+
+    .leadership .section-heading p {
+      color: #cad3de;
+    }
+
+    .leadership-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .leadership-item {
+      background: var(--navy);
+      padding: 34px 28px;
+    }
+
+    .leadership-item span {
+      display: block;
+      color: #d3b77c;
+      font-size: 2rem;
+      font-family: Georgia, serif;
+      margin-bottom: 12px;
+    }
+
+    .leadership-item h3 {
+      margin-bottom: 10px;
+    }
+
+    .leadership-item p {
+      color: #bac6d3;
+      font-size: 0.94rem;
+    }
+
+    .leadership-note {
+      margin-top: 40px;
+      padding: 22px 24px;
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #d8e0e8;
+      max-width: 860px;
+    }
+
+    /* ------------------------------
+       PHOTOGRAPHY
+    ------------------------------ */
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 14px;
+    }
+
+    .photo-box {
+      min-height: 240px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(16,37,63,0.85),
+          rgba(185,145,70,0.45)
+        );
+      border-radius: 9px;
+      display: flex;
+      align-items: end;
+      padding: 24px;
+      color: white;
+    }
+
+    .photo-box:first-child {
+      min-height: 495px;
+      grid-row: span 2;
+    }
+
+    .photo-box span {
+      font-weight: 650;
+    }
+
+    /* ------------------------------
+       CONTACT
+    ------------------------------ */
+
+    .contact-panel {
+      background: var(--cream);
+      padding: 50px;
+      border-radius: 14px;
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .contact-panel h2 {
+      font-family: Georgia, serif;
+      color: var(--navy);
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .contact-panel p {
+      color: var(--muted);
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-link {
+      display: block;
+      padding: 14px 18px;
+      border: 1px solid #d6d1c7;
+      border-radius: 7px;
+      background: white;
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    .contact-link:hover {
+      border-color: var(--gold);
+    }
+
+    /* ------------------------------
+       FOOTER
+    ------------------------------ */
+
+    footer {
+      background: #0b1d30;
+      color: #aebbc8;
+      padding: 35px 0;
+      font-size: 0.9rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* ------------------------------
+       MOBILE
+    ------------------------------ */
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .about-grid,
+      .contact-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .portrait-placeholder {
+        margin: 30px auto 0;
+        max-width: 250px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .leadership-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .photo-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .photo-box:first-child {
+        grid-row: auto;
+        grid-column: 1 / -1;
+        min-height: 320px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      section {
+        padding: 70px 0;
+      }
+
+      .hero {
+        padding: 75px 0 70px;
+      }
+
+      .menu-button {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: white;
+        border-bottom: 1px solid var(--line);
+        padding: 22px 5%;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .cards,
+      .leadership-grid,
+      .photo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .research-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .photo-box:first-child {
+        grid-column: auto;
+        min-height: 240px;
+      }
+
+      .contact-panel {
+        padding: 30px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==========================
+       NAVIGATION
+  =========================== -->
+
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#home" class="brand">
+          <div class="brand-mark">LD</div>
+          <span>Lemuel Danganan</span>
+        </a>
+
+        <button
+          class="menu-button"
+          id="menuButton"
+          aria-label="Open navigation menu"
+        >
+          ☰
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#about">About</a></li>
+          <li><a href="#scholarship">Scholarship</a></li>
+          <li><a href="#teaching">Teaching</a></li>
+          <li><a href="#ministry">Ministry</a></li>
+          <li><a href="#service">Public Service</a></li>
+          <li><a href="#leadership">Leadership</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- ==========================
+       HERO
+  =========================== -->
+
+  <main id="home">
+
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div>
+          <p class="eyebrow">
+            Faith · Scholarship · Education · Public Service
+          </p>
+
+          <h1>
+            Lemuel<br />
+            Danganan
+          </h1>
+
+          <p class="hero-subtitle">
+            Pastor-Teacher, scholar, educator, and researcher committed to
+            thoughtful Christian ministry, academic work, civic responsibility,
+            and responsible public leadership.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#about" class="btn btn-primary">
+              About Me
+            </a>
+
+            <a href="#scholarship" class="btn btn-secondary">
+              Scholarship
+            </a>
+          </div>
+        </div>
+
+        <!--
+          LATER:
+          We can replace this LD circle with your real photograph.
+        -->
+
+        <div class="portrait-placeholder">
+          LD
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==========================
+         ABOUT
+    =========================== -->
+
+    <section id="about">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="eyebrow">About</p>
+          <h2>
+            A life at the meeting point of faith, education, scholarship,
+            and service.
+          </h2>
+        </div>
+
+        <div class="about-grid">
+
+          <div class="about-copy">
+            <p>
+              I am a pastor-teacher, educator, scholar, and researcher in the
+              Philippines. My work brings together Christian ministry,
+              religious studies, ethics, education, human dignity, peace,
+              community life, and questions of public responsibility.
+            </p>
+
+            <p>
+              Teaching and ministry have placed me in classrooms, churches,
+              communities, and institutions where ideas must eventually meet
+              real human lives. My academic work therefore asks not only what
+              we should believe, but also what we owe one another and how
+              institutions should act when human welfare is at stake.
+            </p>
+
+            <p>
+              I am also developing a long-term program of public leadership
+              formation grounded in study, service, responsible speech,
+              constitutional government, institution-building, and concern
+              for future generations.
+            </p>
+          </div>
+
+          <div class="principles">
+
+            <div class="principle">
+              <strong>Human Dignity</strong>
+              Public institutions should treat every person as possessing
+              worth that cannot be reduced to utility, status, or political
+              convenience.
+            </div>
+
+            <div class="principle">
+              <strong>Responsible Service</strong>
+              Authority should be understood first as responsibility for
+              persons, institutions, and the common life.
+            </div>
+
+            <div class="principle">
+              <strong>Truthful Scholarship</strong>
+              Academic work should be careful with evidence, fair to competing
+              arguments, and clear about what its sources can actually support.
+            </div>
+
+            <div class="principle">
+              <strong>Formation Before Position</strong>
+              Public leadership begins long before public office: through
+              disciplined study, character, service, and institutional trust.
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==========================
+         SCHOLARSHIP
+    =========================== -->
+
+    <section id="scholarship" class="section-alt">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="eyebrow">Scholarship & Research</p>
+
+          <h2>
+            Research concerned with ethics, religion, education,
+            responsibility, and public life.
+          </h2>
+
+          <p>
+            This section can later become a full publication database with
+            journal articles, conference papers, preprints, books, and
+            research projects.
+          </p>
+        </div>
+
+        <div class="research-list">
+
+          <div class="research-item">
+            <div class="research-label">
+              Ethics
+            </div>
+
+            <div>
+              <h3>Responsibility, Human Dignity & Moral Obligation</h3>
+              <p>
+                Work on moral responsibility, rights, duties, human dignity,
+                ethical decision-making, and relations of responsibility.
+              </p>
+            </div>
+          </div>
+
+          <div class="research-item">
+            <div class="research-label">
+              Religion
+            </div>
+
+            <div>
+              <h3>Religion, Theology & Public Life</h3>
+              <p>
+                Research examining Christian thought, religious studies,
+                ministry, theological judgment, and the public role of faith.
+              </p>
+            </div>
+          </div>
+
+          <div class="research-item">
+            <div class="research-label">
+              Education
+            </div>
+
+            <div>
+              <h3>Ethics, Peace & Formation in Education</h3>
+              <p>
+                Work concerned with moral education, peace learning,
+                institutional responsibility, educational continuity,
+                and formation.
+              </p>
+            </div>
+          </div>
+
+          <div class="research-item">
+            <div class="research-label">
+              Society
+            </div>
+
+            <div>
+              <h3>Philippine Public Ethics</h3>
+              <p>
+                Research connecting ethical reasoning with Philippine
+                institutions, communities, law, culture, disaster governance,
+                public spaces, and civic responsibility.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="margin-top:34px;">
+          <a
+            href="https://orcid.org/0009-0009-9863-0185"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary"
+          >
+            View ORCID Profile
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==========================
+         TEACHING
+    =========================== -->
+
+    <section id="teaching">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="eyebrow">Teaching</p>
+
+          <h2>
+            Education as intellectual formation and preparation
+            for responsible life.
+          </h2>
+        </div>
+
+        <div class="cards">
+
+          <article class="card">
+            <div class="card-number">01</div>
+            <h3>Ethics</h3>
+            <p>
+              Teaching students to identify moral questions, weigh reasons,
+              examine competing duties, and connect ethical thought with
+              personal and professional responsibility.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">02</div>
+            <h3>Religious Studies</h3>
+            <p>
+              Academic study of religion, theology, belief, interpretation,
+              culture, and religious communities.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">03</div>
+            <h3>Biblical & Theological Studies</h3>
+            <p>
+              Teaching biblical interpretation and Christian thought with
+              attention to text, history, theology, and lived ministry.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==========================
+         MINISTRY
+    =========================== -->
+
+    <section id="ministry" class="section-alt">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="eyebrow">Ministry</p>
+
+          <h2>
+            Pastoral ministry concerned with people,
+            formation, care, and community.
+          </h2>
+        </div>
+
+        <div class="cards">
+
+          <article class="card">
+            <div class="card-number">PASTORAL</div>
+            <h3>Pastoral Leadership</h3>
+            <p>
+              Ministry through preaching, teaching, discipleship,
+              pastoral care, congregational life, and Christian formation.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">CARE</div>
+            <h3>Spiritual Care</h3>
+            <p>
+              A ministry approach attentive to human vulnerability,
+              suffering, accompaniment, responsible care, and institutional
+              settings.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">COMMUNITY</div>
+            <h3>Community Ministry</h3>
+            <p>
+              Faith expressed beyond church walls through relationships,
+              education, community engagement, service, and public concern.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==========================
+         PUBLIC SERVICE
+    =========================== -->
+
+    <section id="service">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="eyebrow">Civic & Public Service</p>
+
+          <h2>
+            Serving the common life before seeking public position.
+          </h2>
+
+          <p>
+            Public service begins in communities, schools, churches,
+            professional institutions, civic organizations, and the ordinary
+            responsibilities through which trust is built.
+          </p>
+        </div>
+
+        <div class="cards">
+
+          <article class="card">
+            <div class="card-number">SERVICE</div>
+            <h3>Community</h3>
+            <p>
+              Participate in work that meets concrete community needs and
+              connects scholarship with lived social concerns.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">INSTITUTIONS</div>
+            <h3>Institution-Building</h3>
+            <p>
+              Support institutions that remain accountable, fair,
+              competent, and capable of serving people beyond individual
+              personalities.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">DIALOGUE</div>
+            <h3>Public Conversation</h3>
+            <p>
+              Contribute to public discussion through careful reasoning,
+              responsible disagreement, scholarship, lectures, and writing.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==========================
+         PUBLIC LEADERSHIP
+    =========================== -->
+
+    <section id="leadership" class="leadership">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="eyebrow">Public Leadership Formation</p>
+
+          <h2>
+            Preparing for responsibility before authority.
+          </h2>
+
+          <p>
+            Statesmanship is treated here as a long-term discipline of
+            service, study, judgment, institutional responsibility,
+            and concern for generations beyond one's own.
+          </p>
+        </div>
+
+        <div class="leadership-grid">
+
+          <div class="leadership-item">
+            <span>01</span>
+            <h3>Study</h3>
+            <p>
+              Constitutional government, Philippine history, law,
+              economics, policy, diplomacy, and public administration.
+            </p>
+          </div>
+
+          <div class="leadership-item">
+            <span>02</span>
+            <h3>Serve</h3>
+            <p>
+              Build a verifiable record of work with communities and
+              institutions before seeking greater authority.
+            </p>
+          </div>
+
+          <div class="leadership-item">
+            <span>03</span>
+            <h3>Write</h3>
+            <p>
+              Develop serious public arguments on national questions
+              through scholarship, essays, lectures, and policy work.
+            </p>
+          </div>
+
+          <div class="leadership-item">
+            <span>04</span>
+            <h3>Build Trust</h3>
+            <p>
+              Work respectfully across religious, academic, professional,
+              social, and political boundaries.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="leadership-note">
+          This program of public leadership formation is not a declaration
+          of political candidacy. It is a commitment to becoming better
+          prepared for public responsibility wherever service may eventually
+          be required.
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==========================
+         PHOTOGRAPHY / CREATION
+    =========================== -->
+
+    <section id="photography">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="eyebrow">Photography & Creation</p>
+
+          <h2>
+            Paying attention to the world we have been given.
+          </h2>
+
+          <p>
+            A future gallery can feature wildlife, landscapes,
+            creation-care photography, ministry, academic events,
+            and community life.
+          </p>
+        </div>
+
+        <div class="photo-grid">
+
+          <div class="photo-box">
+            <span>Creation Care</span>
+          </div>
+
+          <div class="photo-box">
+            <span>Wildlife</span>
+          </div>
+
+          <div class="photo-box">
+            <span>Community</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==========================
+         CONTACT
+    =========================== -->
+
+    <section id="contact">
+      <div class="container">
+
+        <div class="contact-panel">
+
+          <div>
+            <p class="eyebrow">Contact</p>
+
+            <h2>
+              Scholarship, teaching, ministry,
+              and public conversation.
+            </h2>
+
+            <p>
+              Contact information can be added here once you decide which
+              professional email address and public profiles you want
+              displayed.
+            </p>
+          </div>
+
+          <div class="contact-links">
+
+            <!-- CHANGE THIS EMAIL BEFORE PUBLICATION -->
+            <a
+              class="contact-link"
+              href="mailto:proflem.danganan@gmail.com"
+            >
+              Email
+            </a>
+
+            <a
+              class="contact-link"
+              href="https://orcid.org/0009-0009-9863-0185"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ORCID
+            </a>
+
+            <!--
+            LATER WE CAN ADD:
+            Google Scholar
+            ResearchGate
+            Figshare
+            LinkedIn
+            Facebook Public Page
+            CV PDF
+            -->
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ==========================
+       FOOTER
+  =========================== -->
+
+  <footer>
+    <div class="container footer-inner">
+
+      <span>
+        © <span id="year"></span> Lemuel Danganan.
+      </span>
+
+      <span>
+        Faith · Scholarship · Education · Service
+      </span>
+
+    </div>
+  </footer>
+
+
+  <script>
+    // Automatic copyright year
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    // Mobile navigation
+    const menuButton = document.getElementById("menuButton");
+    const navLinks = document.getElementById("navLinks");
+
+    menuButton.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    // Close mobile menu after a link is selected
+    document
+      .querySelectorAll(".nav-links a")
+      .forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+        });
+      });
+  </script>
+
+</body>
+</html>
