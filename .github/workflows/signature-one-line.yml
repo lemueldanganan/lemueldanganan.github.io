@@ -1,0 +1,44 @@
+name: Keep signature on one line
+
+on:
+  push:
+    paths:
+      - '.github/workflows/signature-one-line.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-signature:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch signature styling
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          t=p.read_text(encoding='utf-8')
+          old='.sign{font:32px "Segoe Script","Brush Script MT",cursive;color:var(--gold2)}'
+          new='.sign{font:clamp(24px,3vw,32px) "Segoe Script","Brush Script MT",cursive;color:var(--gold2);white-space:nowrap;display:inline-block}'
+          if old in t:
+              t=t.replace(old,new)
+          elif 'white-space:nowrap' not in t:
+              t=t.replace('.sign{', '.sign{white-space:nowrap;display:inline-block;')
+          p.write_text(t,encoding='utf-8')
+          PY
+      - name: Commit change
+        shell: bash
+        run: |
+          git config user.name "lemueldanganan"
+          git config user.email "lemdanganan@gmail.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No change required"
+          else
+            git commit -m "Keep footer signature on one line"
+            git push
+          fi
