@@ -1,0 +1,73 @@
+name: Fix live slider and connect links
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-slider-connect.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch homepage
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          t=p.read_text(encoding='utf-8')
+
+          t=t.replace('.arrow{position:absolute;top:310px;z-index:5;width:41px;height:41px;border:1px solid rgba(240,203,89,.72);border-radius:50%;display:grid;place-items:center;color:#fff;font-size:26px;font-family:Georgia,serif}', '.arrow{position:absolute;top:310px;z-index:5;width:41px;height:41px;border:1px solid rgba(240,203,89,.72);border-radius:50%;display:grid;place-items:center;color:#fff;font-size:26px;font-family:Georgia,serif;background:rgba(5,24,14,.34);cursor:pointer;transition:.2s ease}.arrow:hover,.arrow:focus-visible{background:rgba(211,173,66,.22);transform:scale(1.06);outline:none}')
+          t=t.replace('.dots i{width:9px;height:9px;border-radius:50%;background:#fff;display:block}.dots i:first-child{background:var(--gold)}', '.dots button{width:9px;height:9px;border-radius:50%;background:#fff;display:block;border:0;padding:0;cursor:pointer;opacity:.78;transition:.2s ease}.dots button.active{background:var(--gold);opacity:1;transform:scale(1.2)}')
+          t=t.replace('.socials{display:flex;gap:8px}.socials i{width:31px;height:31px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:9px;color:#f4e7ac}', '.socials{display:flex;gap:8px;flex-wrap:wrap}.socials a{width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;font-size:9px;color:#f4e7ac;font-weight:800;transition:.2s ease}.socials a:hover,.socials a:focus-visible{background:rgba(211,173,66,.18);transform:translateY(-2px);outline:none}')
+
+          old='<div class="container hero-main"><div class="hero-copy"><div class="eyebrow">Pastor · Scholar · Teacher · Servant Leader</div><h1>Thinking Faithfully.<br>Serving Humbly.</h1><div class="accent"></div><p class="lede">A life devoted to scholarship, teaching,<br>ministry, creation care, and the common good.</p><a class="cta" href="#about">Explore My Work <span>→</span></a></div><div class="portrait-wrap"><div class="portrait"><img src="lemuel.jpg.png" alt="Lemuel Dayrit Danganan"></div></div></div>'
+          new='<div class="container hero-main"><div class="hero-copy" id="heroCopy"><div class="eyebrow" id="heroEyebrow">Pastor · Scholar · Teacher · Servant Leader</div><h1 id="heroTitle">Thinking Faithfully.<br>Serving Humbly.</h1><div class="accent"></div><p class="lede" id="heroLede">A life devoted to scholarship, teaching,<br>ministry, creation care, and the common good.</p><a class="cta" id="heroCta" href="#about">Explore My Work <span>→</span></a></div><div class="portrait-wrap"><div class="portrait"><img src="lemuel.jpg.png" alt="Lemuel Dayrit Danganan"></div></div></div>'
+          t=t.replace(old,new)
+
+          t=t.replace('<div class="arrow left">‹</div><div class="arrow right">›</div><div class="dots"><i></i><i></i><i></i><i></i><i></i></div>', '<button class="arrow left" id="slidePrev" type="button" aria-label="Previous slide">‹</button><button class="arrow right" id="slideNext" type="button" aria-label="Next slide">›</button><div class="dots" id="slideDots" aria-label="Hero slides"><button class="active" type="button" aria-label="Slide 1"></button><button type="button" aria-label="Slide 2"></button><button type="button" aria-label="Slide 3"></button><button type="button" aria-label="Slide 4"></button><button type="button" aria-label="Slide 5"></button></div>')
+
+          t=t.replace('<div class="foot"><b>Connect</b><div class="socials"><i>✉</i><i>ORCID</i><i>f</i><i>RG</i></div></div><div class="foot"><b>ORCID</b><a href="https://orcid.org/0009-0009-9863-0185" target="_blank" rel="noopener">0009-0009-9863-0185</a></div>', '<div class="foot"><b>Connect</b><div class="socials"><a href="mailto:proflem.dangana@gmail.com" aria-label="Email" title="Email">✉</a><a href="https://orcid.org/0009-0009-9863-0185" target="_blank" rel="noopener" aria-label="ORCID" title="ORCID">ORCID</a><a href="https://figshare.com/authors/Lemuel_Danganan/24611157" target="_blank" rel="noopener" aria-label="Figshare" title="Figshare">FG</a></div></div><div class="foot"><b>ORCID</b><a href="https://orcid.org/0009-0009-9863-0185" target="_blank" rel="noopener">0009-0009-9863-0185</a><br><a href="mailto:proflem.dangana@gmail.com">proflem.dangana@gmail.com</a></div>')
+
+          oldscript='<script>document.getElementById("year").textContent=new Date().getFullYear();</script>'
+          newscript='''<script>
+          document.getElementById("year").textContent=new Date().getFullYear();
+          const slides=[
+          {eyebrow:"Pastor · Scholar · Teacher · Servant Leader",title:"Thinking Faithfully.<br>Serving Humbly.",lede:"A life devoted to scholarship, teaching,<br>ministry, creation care, and the common good.",cta:"Explore My Work",href:"#about",image:"assets/forest.svg"},
+          {eyebrow:"Scholarship & Research",title:"Asking Difficult Questions.<br>Following Evidence.",lede:"Research in philosophy, theology, ethics,<br>political thought, and public life.",cta:"View Scholarship",href:"#work",image:"assets/scholarship.svg"},
+          {eyebrow:"Teaching & Formation",title:"Teaching for Understanding.<br>Forming Judgment.",lede:"Education that joins careful thought,<br>human dignity, responsibility, and service.",cta:"View Teaching",href:"#work",image:"assets/teaching.svg"},
+          {eyebrow:"Ministry & Creation Care",title:"Faith in Service.<br>Care for Our Common Home.",lede:"Pastoral presence, community formation,<br>ecological responsibility, and care.",cta:"Explore Ministry",href:"#work",image:"assets/ministry.svg"},
+          {eyebrow:"Public Leadership",title:"Preparing for Responsibility.<br>Before Authority.",lede:"Formation for ethical public service,<br>institution-building, justice, and peace.",cta:"Explore Leadership",href:"#work",image:"assets/leadership.svg"}
+          ];
+          let slideIndex=0;
+          const hero=document.querySelector('.hero'),heroCopy=document.getElementById('heroCopy'),eyebrow=document.getElementById('heroEyebrow'),title=document.getElementById('heroTitle'),lede=document.getElementById('heroLede'),cta=document.getElementById('heroCta'),dots=[...document.querySelectorAll('#slideDots button')];
+          function showSlide(next){slideIndex=(next+slides.length)%slides.length;const s=slides[slideIndex];heroCopy.style.opacity='0';heroCopy.style.transform='translateY(8px)';setTimeout(()=>{eyebrow.textContent=s.eyebrow;title.innerHTML=s.title;lede.innerHTML=s.lede;cta.innerHTML=s.cta+' <span>→</span>';cta.href=s.href;hero.style.backgroundImage=`linear-gradient(90deg,rgba(3,19,10,.70) 0%,rgba(5,24,14,.42) 42%,rgba(5,20,12,.48) 100%),linear-gradient(180deg,rgba(4,16,9,.14),rgba(2,16,8,.54)),url("${s.image}")`;dots.forEach((d,i)=>d.classList.toggle('active',i===slideIndex));heroCopy.style.opacity='1';heroCopy.style.transform='translateY(0)'},140)}
+          heroCopy.style.transition='opacity .28s ease, transform .28s ease';
+          document.getElementById('slidePrev').addEventListener('click',()=>showSlide(slideIndex-1));
+          document.getElementById('slideNext').addEventListener('click',()=>showSlide(slideIndex+1));
+          dots.forEach((d,i)=>d.addEventListener('click',()=>showSlide(i)));
+          let autoplay=setInterval(()=>showSlide(slideIndex+1),9000);
+          hero.addEventListener('mouseenter',()=>clearInterval(autoplay));
+          hero.addEventListener('mouseleave',()=>{clearInterval(autoplay);autoplay=setInterval(()=>showSlide(slideIndex+1),9000)});
+          </script>'''
+          t=t.replace(oldscript,newscript)
+          p.write_text(t,encoding='utf-8')
+          PY
+      - name: Commit fix
+        shell: bash
+        run: |
+          git config user.name "lemueldanganan"
+          git config user.email "lemdanganan@gmail.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No changes required"
+          else
+            git commit -m "Fix live hero slider and connect links"
+            git push
+          fi
