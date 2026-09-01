@@ -1,0 +1,42 @@
+name: Add verified X profile to Connect
+
+on:
+  push:
+    paths:
+      - '.github/workflows/add-x-connect.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-x:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Add X link
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          t=p.read_text(encoding='utf-8')
+          old='<a href="https://figshare.com/authors/Lemuel_Danganan/24611157" target="_blank" rel="noopener" aria-label="Figshare" title="Figshare">FG</a>'
+          new=old+'<a href="https://x.com/LemPhD" target="_blank" rel="noopener" aria-label="X @LemPhD" title="X @LemPhD">X</a>'
+          if 'https://x.com/LemPhD' not in t:
+              t=t.replace(old,new)
+          p.write_text(t,encoding='utf-8')
+          PY
+      - name: Commit X link
+        shell: bash
+        run: |
+          git config user.name "lemueldanganan"
+          git config user.email "lemdanganan@gmail.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "X link already present"
+          else
+            git commit -m "Add X profile to Connect"
+            git push
+          fi
