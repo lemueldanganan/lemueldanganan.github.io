@@ -1,0 +1,14 @@
+/* Elegant motion layer */
+.hero::before{content:"";position:absolute;inset:-12% -18%;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 24% 38%,rgba(231,238,223,.16) 0 12%,transparent 35%),radial-gradient(ellipse at 68% 60%,rgba(229,238,226,.11) 0 10%,transparent 32%),radial-gradient(ellipse at 48% 85%,rgba(246,218,145,.08) 0 8%,transparent 30%);filter:blur(18px);opacity:.72;animation:mistDrift 18s ease-in-out infinite alternate}
+@keyframes mistDrift{0%{transform:translate3d(-2%,0,0) scale(1.03);opacity:.46}50%{transform:translate3d(3%,-1%,0) scale(1.07);opacity:.72}100%{transform:translate3d(-1%,2%,0) scale(1.04);opacity:.52}}
+.brand{animation:heroDrop .78s cubic-bezier(.2,.8,.2,1) both}.portrait-wrap{animation:portraitRise 1.05s .12s cubic-bezier(.2,.8,.2,1) both}.hero-copy .eyebrow{animation:copyRise .75s .18s both}.hero-copy h1{animation:copyRise .9s .28s both}.hero-copy .accent{animation:lineGrow .7s .48s both;transform-origin:left center}.hero-copy .lede{animation:copyRise .8s .52s both}.hero-copy .cta{animation:copyRise .8s .65s both}
+@keyframes heroDrop{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes portraitRise{from{opacity:0;transform:translateY(34px) scale(.965)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes copyRise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes lineGrow{from{opacity:0;transform:scaleX(0)}to{opacity:1;transform:scaleX(1)}}
+.reveal-motion{opacity:0;transform:translateY(26px) scale(.985);transition:opacity .72s cubic-bezier(.2,.75,.25,1),transform .72s cubic-bezier(.2,.75,.25,1)}.reveal-motion.is-visible{opacity:1;transform:translateY(0) scale(1)}
+.work-card.reveal-motion{transform:translateY(34px) scale(.97)}.work-card.reveal-motion.is-visible{transform:translateY(0) scale(1)}
+.focus.reveal-motion{transform:translateX(22px)}.focus.reveal-motion.is-visible{transform:translateX(0)}
+.work-card{transition:transform .28s ease,box-shadow .28s ease}.work-card:hover{transform:translateY(-6px);box-shadow:0 14px 28px rgba(10,42,25,.20)}
+.portrait{transition:transform .38s ease,box-shadow .38s ease}.portrait:hover{transform:translateY(-4px) scale(1.012);box-shadow:0 26px 65px rgba(0,0,0,.40)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero::before,.brand,.portrait-wrap,.hero-copy .eyebrow,.hero-copy h1,.hero-copy .accent,.hero-copy .lede,.hero-copy .cta{animation:none!important}.reveal-motion{opacity:1!important;transform:none!important;transition:none!important}.work-card,.portrait{transition:none!important}}
