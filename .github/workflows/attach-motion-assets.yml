@@ -27,6 +27,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes required"
           else
-            git commit -m "Attach elegant motion assets"
+            git commit -m "Attach visitor counter assets"
             git push
           fi
