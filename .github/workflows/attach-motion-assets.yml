@@ -19,6 +19,7 @@ jobs:
         run: |
           grep -q 'assets/motion.css' index.html || sed -i '/<\/head>/i <link rel="stylesheet" href="assets/motion.css">' index.html
           grep -q 'ca-pub-7505640015662375' index.html || sed -i '/<\/head>/i <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7505640015662375" crossorigin="anonymous"></script>' index.html
+          grep -q 'google-adsense-account' index.html || sed -i '/<\/head>/i <meta name="google-adsense-account" content="ca-pub-7505640015662375">' index.html
           grep -q 'assets/motion.js' index.html || sed -i '/<\/body>/i <script src="assets/motion.js" defer></script>' index.html
       - name: Commit changes
         run: |
