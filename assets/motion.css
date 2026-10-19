@@ -27,3 +27,17 @@
 html{height:auto!important;min-height:100%!important;overflow-x:hidden!important;overflow-y:auto!important;scroll-behavior:smooth}
 body{height:auto!important;min-height:100vh!important;overflow-x:hidden!important;overflow-y:visible!important;position:relative!important;-webkit-overflow-scrolling:touch}
 #visitor-world-panel{position:relative!important;z-index:5!important;display:block!important;clear:both!important}
+
+
+/* Country-counter inspired panel: restrained, legible, responsive */
+#visitor-world-panel.vwp-classic{width:min(440px,calc(100% - 32px));margin:32px auto 24px;padding:16px 18px 12px;border:1px solid #c5c9c7;border-radius:6px;background:#fff;box-shadow:0 2px 9px rgba(0,0,0,.08);color:#212b25;text-align:left;font-family:Arial,Helvetica,sans-serif;box-sizing:border-box}
+#visitor-world-panel .vwp-classic-title{margin:0 0 12px;font-size:26px;line-height:1.15;letter-spacing:-.02em;color:#202820;font-weight:700}
+#visitor-world-panel .vwp-classic-body{display:flex;flex-direction:column;gap:12px}
+#visitor-world-panel .vwp-total-line{display:flex;gap:16px;align-items:baseline;justify-content:space-between;padding:12px 14px;border:1px solid #e4e8e4;border-radius:5px;background:#f7f9f7}
+#visitor-world-panel .vwp-total-label{font-size:15px;letter-spacing:.015em}
+#visitor-world-panel .vwp-total-number{font-size:26px;font-weight:700;font-variant-numeric:tabular-nums;color:#244e37;overflow-wrap:anywhere}
+#visitor-world-panel .vwp-flags-illustration{font-size:19px;line-height:1.8;letter-spacing:.025em;padding:4px 0}
+#visitor-world-panel .vwp-stats-note,#visitor-world-panel .vwp-history{font-size:12px;line-height:1.5;color:#57625b}
+#visitor-world-panel .vwp-classic-bottom{border-top:1px solid #e5e8e5;margin-top:15px;padding-top:10px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+#visitor-world-panel .vwp-country-link,#visitor-world-panel .vwp-stats-link{color:#285c40;text-decoration:underline;text-underline-offset:2px;font-size:12px}
+@media(max-width:520px){#visitor-world-panel.vwp-classic{padding:14px 12px}#visitor-world-panel .vwp-classic-title{font-size:23px}#visitor-world-panel .vwp-total-number{font-size:22px}}
