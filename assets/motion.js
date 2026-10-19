@@ -7,64 +7,83 @@
 })();
 
 (function(){
-  // Original CounterAPI data remains untouched. Both domains now share one counter key.
-  const primary='lemueldanganan.github.io';
-  const legacy='lemueldanganan-github-io.vercel.app';
-  const official='https://counterapi.com/counter.svg?ns='+encodeURIComponent(primary)+'&action=view&key=home&label=page%20views&style=flat&color=365D47';
-  const backup='https://hits.sh/lemueldanganan.github.io.svg?label=New%20page%20views&style=flat-square&color=365D47';
-  function installVisitorPanel(){
-    if(document.getElementById('visitor-world-panel'))return;
-    const panel=document.createElement('section');
-    panel.id='visitor-world-panel';
-    panel.setAttribute('aria-label','Website page views');
-    const heading=document.createElement('div');
-    heading.className='vwp-title';
-    heading.textContent='Website Page Views';
-    const row=document.createElement('div');
-    row.className='vwp-row';
-    const img=document.createElement('img');
-    img.alt='Shared page-view counter for both website addresses';
-    img.style.cssText='max-width:100%;width:auto;height:30px;vertical-align:middle';
-    img.decoding='async';
-    img.loading='eager';
-    const link=document.createElement('a');
-    link.href='https://counterapi.com/'+primary+'/view/home';
-    link.rel='noopener noreferrer';
-    link.target='_blank';
-    link.className='vwp-link';
-    link.appendChild(img);
-    const note=document.createElement('div');
-    note.className='vwp-note';
-    note.textContent='One page-view counter shared by GitHub Pages and Vercel.';
-    let fallback=false;
-    img.addEventListener('error',function(){
-      if(!fallback){
-        fallback=true;
-        link.href='https://hits.sh/lemueldanganan.github.io/';
-        img.alt='New page views since the counter repair';
-        note.textContent='Backup counter: new page views only. The original historical counts have not been reset.';
-        img.src=backup+'&reload='+Date.now();
-      }else{
-        img.remove();
-        link.textContent='Live counter unavailable';
-        note.textContent='Neither counter service could load; historical data has not been changed.';
-      }
-    });
-    img.src=official+'&refresh='+Date.now();
-    row.appendChild(link);
-    const archived=document.createElement('div');
-    archived.className='vwp-note';
-    const oldLink=document.createElement('a');
-    oldLink.href='https://counterapi.com/'+legacy+'/view/home';
-    oldLink.target='_blank';
-    oldLink.rel='noopener noreferrer';
-    oldLink.textContent='Previous Vercel-only counter history';
-    archived.append('Earlier Vercel views were counted separately. ',oldLink,'.');
-    panel.append(heading,row,note,archived);
-    const footer=document.querySelector('footer,.foot');
-    if(footer && footer.parentNode)footer.parentNode.insertBefore(panel,footer);
-    else document.body.appendChild(panel);
+  const mainNs='lemueldanganan.github.io';
+  const legacyNs='lemueldanganan-github-io.vercel.app';
+  const base='https://counterapi.com/api/';
+  const nsUrl=(ns,readonly)=>base+encodeURIComponent(ns)+'/view/home'+(readonly?'?readOnly=true':'');
+  async function count(ns,readOnly){
+    const ctrl=new AbortController();
+    const timer=setTimeout(()=>ctrl.abort(),10000);
+    try{
+      const response=await fetch(nsUrl(ns,readOnly),{cache:'no-store',signal:ctrl.signal});
+      if(!response.ok)throw new Error('HTTP '+response.status);
+      const json=await response.json();
+      const value=Number(json&&json.value);
+      if(!Number.isSafeInteger(value)||value<0)throw new Error('Invalid count');
+      return value;
+    }finally{clearTimeout(timer);}
   }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',installVisitorPanel,{once:true});
-  else installVisitorPanel();
+  function el(tag,cls,text){
+    const node=document.createElement(tag);
+    if(cls)node.className=cls;
+    if(text!==undefined)node.textContent=text;
+    return node;
+  }
+  function install(){
+    if(document.getElementById('visitor-world-panel'))return;
+    const section=el('section','vwp-classic');
+    section.id='visitor-world-panel';
+    section.setAttribute('aria-label','Website visitor counter');
+    section.appendChild(el('h3','vwp-classic-title','Visitors'));
+    const body=el('div','vwp-classic-body');
+    const line=el('div','vwp-total-line');
+    const label=el('span','vwp-total-label','Pageviews');
+    const total=el('strong','vwp-total-number','Loading…');
+    total.setAttribute('aria-live','polite');
+    line.append(label,total);
+    const mini=el('div','vwp-flags-illustration');
+    mini.setAttribute('aria-label','Decorative international flags; not a country ranking');
+    mini.textContent='🇵🇭  🇺🇸  🇸🇬  🇮🇳  🇬🇧  🇨🇦  🇦🇺  🌍';
+    const status=el('div','vwp-stats-note','Shared visitor count across both website addresses.');
+    const country=el('div','vwp-stats-note');
+    const countryLink=el('a','vwp-country-link','Country-by-country counter');
+    countryLink.href='https://flagcounter.com/';
+    countryLink.target='_blank';
+    countryLink.rel='noopener noreferrer';
+    country.append('For verified country totals, ',countryLink,' requires its own tracking ID.');
+    body.append(line,mini,status,country);
+    const bottom=el('div','vwp-classic-bottom');
+    const old=el('span','vwp-history','Preserving previous counter records');
+    const stats=el('a','vwp-stats-link','View source statistics ↗');
+    stats.href='https://counterapi.com/'+mainNs+'/view/home';
+    stats.target='_blank';
+    stats.rel='noopener noreferrer';
+    bottom.append(old,stats);
+    section.append(body,bottom);
+    const footer=document.querySelector('footer,.foot');
+    if(footer&&footer.parentNode)footer.parentNode.insertBefore(section,footer);
+    else document.body.appendChild(section);
+    Promise.allSettled([count(mainNs,false),count(legacyNs,true)]).then(results=>{
+      const a=results[0].status==='fulfilled'?results[0].value:null;
+      const b=results[1].status==='fulfilled'?results[1].value:null;
+      if(a!==null&&b!==null){
+        total.textContent=(a+b).toLocaleString('en-US');
+        old.textContent='Includes earlier counts from both domains';
+      }else if(a!==null){
+        total.textContent=a.toLocaleString('en-US');
+        old.textContent='Earlier Vercel views not available';
+      }else if(b!==null){
+        total.textContent=b.toLocaleString('en-US');
+        old.textContent='Historical Vercel views; current service unavailable';
+      }else{
+        total.textContent='Unavailable';
+        old.textContent='The existing numbers have not been reset';
+      }
+    }).catch(()=>{
+      total.textContent='Unavailable';
+      old.textContent='The existing numbers have not been reset';
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install,{once:true});
+  else install();
 })();
