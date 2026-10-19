@@ -1,0 +1,33 @@
+name: Recover historical visitor counts (read-only)
+on:
+  push:
+    paths:
+      - '.github/workflows/recover-visitor-counts.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Query the two original counters without incrementing
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, urllib.request, urllib.error, datetime
+          print('Snapshot UTC:', datetime.datetime.now(datetime.timezone.utc).isoformat())
+          for namespace in ['lemueldanganan.github.io', 'lemueldanganan-github-io.vercel.app']:
+              url=f'https://counterapi.com/api/{namespace}/view/home?readOnly=true'
+              request=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 VisitorRecovery/1.0','Accept':'application/json'})
+              try:
+                  with urllib.request.urlopen(request,timeout=12) as response:
+                      text=response.read(3000).decode('utf-8','replace')
+                      try:
+                          data=json.loads(text)
+                          print('RESULT',json.dumps({'namespace':namespace,'status':response.status,'value':data.get('value'),'ns':data.get('ns'),'action':data.get('action'),'key':data.get('key'),'response':data}))
+                      except ValueError:
+                          print('NON_JSON',json.dumps({'namespace':namespace,'status':response.status,'body':text[:600]}))
+              except Exception as exc:
+                  print('FAILED',json.dumps({'namespace':namespace,'error':str(exc)[:350]}))
+          PY
