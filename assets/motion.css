@@ -41,3 +41,18 @@ body{height:auto!important;min-height:100vh!important;overflow-x:hidden!importan
 #visitor-world-panel .vwp-classic-bottom{border-top:1px solid #e5e8e5;margin-top:15px;padding-top:10px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
 #visitor-world-panel .vwp-country-link,#visitor-world-panel .vwp-stats-link{color:#285c40;text-decoration:underline;text-underline-offset:2px;font-size:12px}
 @media(max-width:520px){#visitor-world-panel.vwp-classic{padding:14px 12px}#visitor-world-panel .vwp-classic-title{font-size:23px}#visitor-world-panel .vwp-total-number{font-size:22px}}
+
+
+/* Shared live visitor counter */
+#visitor-world-panel.vwp-live-panel{width:min(430px,calc(100% - 28px));margin:32px auto;padding:22px 24px 18px;box-sizing:border-box;background:#fff;border:1px solid #cbd6cf;border-radius:12px;box-shadow:0 8px 26px rgba(15,35,24,.08);color:#233c2b;text-align:center;position:relative;z-index:6}
+#visitor-world-panel .vwp-live-heading{font-family:Arial,Helvetica,sans-serif;font-size:27px;font-weight:700;letter-spacing:-.04em;line-height:1.15;margin:0 0 5px;color:#233c2b}
+#visitor-world-panel .vwp-live-subtitle{font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.5;color:#596a5e;margin:0 0 18px}
+#visitor-world-panel .vwp-live-badge-row{display:flex;justify-content:center;align-items:center;min-height:31px}
+#visitor-world-panel .vwp-live-badge-link{display:inline-flex;align-items:center;justify-content:center;min-height:29px;color:#2d5639;font-weight:600;font-size:13px;text-decoration:none}
+#visitor-world-panel .vwp-live-image{display:block;width:auto;max-width:100%;height:auto;min-height:28px}
+#visitor-world-panel .vwp-live-countries{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin:18px 0 10px;font-size:23px;line-height:1.3}
+#visitor-world-panel .vwp-live-status{font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.5;color:#43574a;margin:0 0 5px}
+#visitor-world-panel .vwp-live-smallprint{font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:1.5;color:#77847b;margin:0 0 15px}
+#visitor-world-panel .vwp-live-archive{padding-top:11px;border-top:1px solid #e5ebe6;display:flex;justify-content:center;flex-wrap:wrap;gap:10px 20px}
+#visitor-world-panel .vwp-live-archive a{font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#3a6848;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:520px){#visitor-world-panel.vwp-live-panel{padding:18px 14px}#visitor-world-panel .vwp-live-heading{font-size:24px}}
