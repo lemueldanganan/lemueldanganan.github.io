@@ -9,7 +9,7 @@
 (function(){
   function installVisitorPanel(){
     if(document.getElementById('visitor-world-panel')) return;
-    const host=location.hostname || 'lemueldanganan.github.io';
+    const host='lemueldanganan.github.io'; // Shared namespace for both websites; preserves GitHub Pages' original counts
     const panel=document.createElement('section');
     panel.id='visitor-world-panel';
     panel.setAttribute('aria-label','Worldwide visitors');
@@ -20,7 +20,7 @@
         '<span class="vwp-flags" aria-hidden="true">🌏 🇵🇭 🇺🇸 🇬🇧 🇨🇦 🇦🇺</span>'+
         '<a class="vwp-link" href="https://counterapi.com/stats/'+encodeURIComponent(host)+'/view/home" target="_blank" rel="noopener">View countries &amp; flags</a>'+
       '</div>'+
-      '<div class="vwp-note">Country statistics appear automatically as visits are recorded.</div>';
+      '<div class="vwp-note">Shared counter for both site addresses. Historical Vercel views remain stored separately.</div>';
     const footer=document.querySelector('footer,.foot');
     if(footer && footer.parentNode){footer.parentNode.insertBefore(panel,footer);}else{document.body.appendChild(panel);}
     if(!document.querySelector('script[data-counterapi-loader]')){
